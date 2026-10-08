@@ -1,0 +1,691 @@
+{
+  "info": {
+    "name": "Verzel - Exploração adicional 08-10-2026",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://verzel-store.qa-test-verzel-store.workers.dev/api"
+    }
+  ],
+  "item": [
+    {
+      "name": "carrinho/calcular: corpo null",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/carrinho/calcular",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "null"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(400));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"JSON_INVALIDO\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "carrinho/calcular: corpo array",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/carrinho/calcular",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "[]"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(400));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"JSON_INVALIDO\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "carrinho/calcular: itens ausentes",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/carrinho/calcular",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(422));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"ITENS_OBRIGATORIOS\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "carrinho/calcular: item null",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/carrinho/calcular",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"itens\": [\n    null\n  ]\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(422));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"ITEM_INVALIDO\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "carrinho/calcular: quantidade -1",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/carrinho/calcular",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"itens\": [\n    {\n      \"produtoId\": \"P001\",\n      \"quantidade\": -1\n    }\n  ]\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(422));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"QUANTIDADE_INVALIDA\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "carrinho/calcular: quantidade \"2\"",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/carrinho/calcular",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"itens\": [\n    {\n      \"produtoId\": \"P001\",\n      \"quantidade\": \"2\"\n    }\n  ]\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(422));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"QUANTIDADE_INVALIDA\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "carrinho/calcular: quantidade null",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/carrinho/calcular",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"itens\": [\n    {\n      \"produtoId\": \"P001\",\n      \"quantidade\": null\n    }\n  ]\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(422));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"QUANTIDADE_INVALIDA\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "pedidos: corpo null",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pedidos",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "null"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(400));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"JSON_INVALIDO\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "pedidos: corpo array",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pedidos",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "[]"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(400));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"JSON_INVALIDO\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "pedidos: itens ausentes",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pedidos",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente\": {\n    \"nome\": \"Cliente Teste\",\n    \"email\": \"rafael.teste@example.com\",\n    \"cep\": \"01310-100\"\n  }\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(422));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"ITENS_OBRIGATORIOS\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "pedidos: item null",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pedidos",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente\": {\n    \"nome\": \"Cliente Teste\",\n    \"email\": \"rafael.teste@example.com\",\n    \"cep\": \"01310-100\"\n  },\n  \"itens\": [\n    null\n  ]\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(422));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"ITEM_INVALIDO\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "pedidos: quantidade -1",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pedidos",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente\": {\n    \"nome\": \"Cliente Teste\",\n    \"email\": \"rafael.teste@example.com\",\n    \"cep\": \"01310-100\"\n  },\n  \"itens\": [\n    {\n      \"produtoId\": \"P001\",\n      \"quantidade\": -1\n    }\n  ]\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(422));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"QUANTIDADE_INVALIDA\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "pedidos: quantidade \"2\"",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pedidos",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente\": {\n    \"nome\": \"Cliente Teste\",\n    \"email\": \"rafael.teste@example.com\",\n    \"cep\": \"01310-100\"\n  },\n  \"itens\": [\n    {\n      \"produtoId\": \"P001\",\n      \"quantidade\": \"2\"\n    }\n  ]\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(422));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"QUANTIDADE_INVALIDA\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "pedidos: quantidade null",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pedidos",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente\": {\n    \"nome\": \"Cliente Teste\",\n    \"email\": \"rafael.teste@example.com\",\n    \"cep\": \"01310-100\"\n  },\n  \"itens\": [\n    {\n      \"produtoId\": \"P001\",\n      \"quantidade\": null\n    }\n  ]\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(422));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"QUANTIDADE_INVALIDA\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "nome com espaços sem sobrenome",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pedidos",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente\": {\n    \"nome\": \"  Cliente  \",\n    \"email\": \"rafael.teste@example.com\",\n    \"cep\": \"01310-100\"\n  },\n  \"itens\": [\n    {\n      \"produtoId\": \"P001\",\n      \"quantidade\": 1\n    }\n  ]\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(422));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"DADOS_INVALIDOS\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "nome em branco",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pedidos",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente\": {\n    \"nome\": \"   \",\n    \"email\": \"rafael.teste@example.com\",\n    \"cep\": \"01310-100\"\n  },\n  \"itens\": [\n    {\n      \"produtoId\": \"P001\",\n      \"quantidade\": 1\n    }\n  ]\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(422));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"DADOS_INVALIDOS\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "email sem domínio",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pedidos",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente\": {\n    \"nome\": \"Cliente Teste\",\n    \"email\": \"cliente@\",\n    \"cep\": \"01310-100\"\n  },\n  \"itens\": [\n    {\n      \"produtoId\": \"P001\",\n      \"quantidade\": 1\n    }\n  ]\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(422));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"DADOS_INVALIDOS\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "CEP com letras e oito números",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pedidos",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente\": {\n    \"nome\": \"Cliente Teste\",\n    \"email\": \"rafael.teste@example.com\",\n    \"cep\": \"abc01310100\"\n  },\n  \"itens\": [\n    {\n      \"produtoId\": \"P001\",\n      \"quantidade\": 1\n    }\n  ]\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(422));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"DADOS_INVALIDOS\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "CEP com nove números",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pedidos",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente\": {\n    \"nome\": \"Cliente Teste\",\n    \"email\": \"rafael.teste@example.com\",\n    \"cep\": \"013101001\"\n  },\n  \"itens\": [\n    {\n      \"produtoId\": \"P001\",\n      \"quantidade\": 1\n    }\n  ]\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(422));",
+              "pm.test(\"erro.codigo\", () => pm.expect(pm.response.json()).to.have.nested.property(\"erro.codigo\", \"DADOS_INVALIDOS\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pedido no limite do frete",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pedidos",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente\": {\n    \"nome\": \"Cliente Teste\",\n    \"email\": \"rafael.teste@example.com\",\n    \"cep\": \"01310-100\"\n  },\n  \"itens\": [\n    {\n      \"produtoId\": \"P005\",\n      \"quantidade\": 2\n    }\n  ],\n  \"cupom\": \"BEMVINDO10\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(201));",
+              "pm.test(\"subtotal\", () => pm.expect(pm.response.json()).to.have.nested.property(\"subtotal\", 200));",
+              "pm.test(\"desconto\", () => pm.expect(pm.response.json()).to.have.nested.property(\"desconto\", 20));",
+              "pm.test(\"frete\", () => pm.expect(pm.response.json()).to.have.nested.property(\"frete\", 0));",
+              "pm.test(\"total\", () => pm.expect(pm.response.json()).to.have.nested.property(\"total\", 180));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pedido com cupom normalizado",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pedidos",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente\": {\n    \"nome\": \"Cliente Teste\",\n    \"email\": \"rafael.teste@example.com\",\n    \"cep\": \"01310-100\"\n  },\n  \"itens\": [\n    {\n      \"produtoId\": \"P001\",\n      \"quantidade\": 1\n    }\n  ],\n  \"cupom\": \"  bEmViNdO10  \"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(201));",
+              "pm.test(\"desconto\", () => pm.expect(pm.response.json()).to.have.nested.property(\"desconto\", 5.99));",
+              "pm.test(\"total\", () => pm.expect(pm.response.json()).to.have.nested.property(\"total\", 73.81));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dois produtos com cinco unidades cada",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/carrinho/calcular",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"itens\": [\n    {\n      \"produtoId\": \"P001\",\n      \"quantidade\": 5\n    },\n    {\n      \"produtoId\": \"P006\",\n      \"quantidade\": 5\n    }\n  ],\n  \"cupom\": \"BEMVINDO10\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(200));",
+              "pm.test(\"subtotal\", () => pm.expect(pm.response.json()).to.have.nested.property(\"subtotal\", 449));",
+              "pm.test(\"desconto\", () => pm.expect(pm.response.json()).to.have.nested.property(\"desconto\", 44.9));",
+              "pm.test(\"frete\", () => pm.expect(pm.response.json()).to.have.nested.property(\"frete\", 0));",
+              "pm.test(\"total\", () => pm.expect(pm.response.json()).to.have.nested.property(\"total\", 404.1));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pedido com valores de centavos",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/pedidos",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cliente\": {\n    \"nome\": \"Cliente Teste\",\n    \"email\": \"rafael.teste@example.com\",\n    \"cep\": \"01310-100\"\n  },\n  \"itens\": [\n    {\n      \"produtoId\": \"P008\",\n      \"quantidade\": 3\n    },\n    {\n      \"produtoId\": \"P004\",\n      \"quantidade\": 1\n    }\n  ],\n  \"cupom\": \"BEMVINDO10\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status esperado', () => pm.response.to.have.status(201));",
+              "pm.test(\"subtotal\", () => pm.expect(pm.response.json()).to.have.nested.property(\"subtotal\", 199.9));",
+              "pm.test(\"desconto\", () => pm.expect(pm.response.json()).to.have.nested.property(\"desconto\", 19.99));",
+              "pm.test(\"frete\", () => pm.expect(pm.response.json()).to.have.nested.property(\"frete\", 19.9));",
+              "pm.test(\"total\", () => pm.expect(pm.response.json()).to.have.nested.property(\"total\", 199.81));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
