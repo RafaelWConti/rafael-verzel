@@ -52,4 +52,4 @@ A coleção de testes exploratórios está em [api/exploration-collection.json](
 
 ## Apoio de IA
 
-O Codex foi usado para ajudar no planejamento, escrever e revisar os arquivos, executar os testes e organizar as evidências.
+A IA foi usada para ajudar no planejamento, escrever e revisar os arquivos, executar os testes e organizar as evidências.
