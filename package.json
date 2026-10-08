@@ -1,0 +1,19 @@
+{
+  "name": "rafael-verzel",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "report": "playwright show-report",
+    "typecheck": "tsc --noEmit",
+    "test:api": "newman run api/collection.json -r cli,json --reporter-json-export evidence/api/latest-run.json"
+  },
+  "engines": { "node": ">=22" },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "26.6.2",
+    "typescript": "7.0.2",
+    "newman": "6.2.2"
+  }
+}
