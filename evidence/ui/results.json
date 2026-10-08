@@ -1,0 +1,62 @@
+{
+  "startedAt": "2026-10-07T13:38:23.868Z",
+  "results": [
+    {
+      "id": "CT02",
+      "title": "CT02 - Aplica 10% nos produtos e mantém o frete",
+      "project": "chromium",
+      "status": "passed",
+      "duration": 10519,
+      "errors": [],
+      "screenshot": "CT02.png"
+    },
+    {
+      "id": "CT04",
+      "title": "CT04 - Recusa cupom inexistente sem aplicar desconto",
+      "project": "chromium",
+      "status": "passed",
+      "duration": 1005,
+      "errors": [],
+      "screenshot": "CT04.png"
+    },
+    {
+      "id": "CT09",
+      "title": "CT09 - Libera frete grátis ao atingir R$ 200 com cupom",
+      "project": "chromium",
+      "status": "failed",
+      "duration": 11335,
+      "errors": [
+        "Error: expect(locator).toHaveText(expected) failed\n\nLocator:  getByRole('region', { name: 'Resumo do pedido', exact: true }).locator('[data-valor=\"frete\"]')\nExpected: \"Grátis\"\nReceived: \"R$ 19,90\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"soft toHaveText\" getByRole('region', { name: 'Resumo do pedido', exact: true }).locator('[data-valor=\"frete\"]') with timeout 5000ms\n  - waiting for getByRole('region', { name: 'Resumo do pedido', exact: true }).locator('[data-valor=\"frete\"]')\n    14 × locator resolved to <dd data-valor=\"frete\">R$ 19,90</dd>\n       - unexpected value \"R$ 19,90\"\n\n\n  31 |   await expect(store.subtotal).toHaveText('R$ 200,00');\n  32 |   await expect(store.discount).toHaveText('- R$ 20,00');\n> 33 |   await expect.soft(store.shipping).toHaveText('Grátis');\n     |                                     ^\n  34 |   await expect.soft(store.total).toHaveText('R$ 180,00');\n  35 | });\n  36 |\n    at C:\\Users\\taina\\Documents\\Codex\\2026-09-23\\usar\\work\\verzel\\delivery\\tests\\cart.spec.ts:33:37",
+        "Error: expect(locator).toHaveText(expected) failed\n\nLocator:  getByRole('region', { name: 'Resumo do pedido', exact: true }).locator('[data-valor=\"total\"]')\nExpected: \"R$ 180,00\"\nReceived: \"R$ 199,90\"\nTimeout:  5000ms\n\nCall log:\n  - Expect \"soft toHaveText\" getByRole('region', { name: 'Resumo do pedido', exact: true }).locator('[data-valor=\"total\"]') with timeout 5000ms\n  - waiting for getByRole('region', { name: 'Resumo do pedido', exact: true }).locator('[data-valor=\"total\"]')\n    14 × locator resolved to <dd data-valor=\"total\">R$ 199,90</dd>\n       - unexpected value \"R$ 199,90\"\n\n\n  32 |   await expect(store.discount).toHaveText('- R$ 20,00');\n  33 |   await expect.soft(store.shipping).toHaveText('Grátis');\n> 34 |   await expect.soft(store.total).toHaveText('R$ 180,00');\n     |                                  ^\n  35 | });\n  36 |\n  37 | test('CT13 - Impede mais de cinco unidades no carrinho e no catálogo', async ({ store }) => {\n    at C:\\Users\\taina\\Documents\\Codex\\2026-09-23\\usar\\work\\verzel\\delivery\\tests\\cart.spec.ts:34:34"
+      ],
+      "screenshot": "CT09.png"
+    },
+    {
+      "id": "CT13",
+      "title": "CT13 - Impede mais de cinco unidades no carrinho e no catálogo",
+      "project": "chromium",
+      "status": "passed",
+      "duration": 1080,
+      "errors": [],
+      "screenshot": "CT13.png"
+    },
+    {
+      "id": "CT22",
+      "title": "CT22 - Mantém frete grátis quando o desconto reduz o valor abaixo de R$ 200",
+      "project": "chromium",
+      "status": "passed",
+      "duration": 3660,
+      "errors": [],
+      "screenshot": "CT22.png"
+    },
+    {
+      "id": "CT14",
+      "title": "CT14 - Confirma pedido com os mesmos valores do carrinho",
+      "project": "chromium",
+      "status": "passed",
+      "duration": 17353,
+      "errors": [],
+      "screenshot": "CT14.png"
+    }
+  ]
+}

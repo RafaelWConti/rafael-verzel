@@ -1,0 +1,49 @@
+{
+  "executedAt": "2026-10-08T12:32:46.146Z",
+  "url": "https://verzel-store.qa-test-verzel-store.workers.dev/pedido-confirmado",
+  "request": {
+    "cliente": {
+      "nome": "Cliente Teste",
+      "email": "rafael.teste@example.com",
+      "cep": "01310-100"
+    },
+    "itens": [
+      {
+        "produtoId": "P005",
+        "quantidade": 2
+      }
+    ],
+    "cupom": "BEMVINDO10"
+  },
+  "status": 201,
+  "response": {
+    "numero": "VZ-075073",
+    "criadoEm": "2026-10-08T12:32:46.089Z",
+    "cliente": {
+      "nome": "Cliente Teste",
+      "email": "rafael.teste@example.com",
+      "cep": "01310100"
+    },
+    "itens": [
+      {
+        "produtoId": "P005",
+        "nome": "Mochila Urbana 20L",
+        "precoUnitario": 100,
+        "quantidade": 2,
+        "total": 200
+      }
+    ],
+    "subtotal": 200,
+    "desconto": 20,
+    "frete": 19.9,
+    "freteGratis": false,
+    "valorFaltanteFreteGratis": 0,
+    "total": 199.9,
+    "cupom": {
+      "codigo": "BEMVINDO10",
+      "aplicado": true,
+      "mensagem": "Cupom aplicado: 10% de desconto nos produtos."
+    }
+  },
+  "visibleText": "Pedido confirmado\n\nPedido VZ-075073\n\nObrigado, Cliente. Seu pedido foi registrado e o pagamento será feito na entrega.\n\nItens do pedido\nSubtotal\nR$ 200,00\nDesconto (BEMVINDO10)\n- R$ 20,00\nFrete\nR$ 19,90\nTotal\nR$ 199,90\n2x Mochila Urbana 20L\nR$ 200,00\nContinuar comprando"
+}
