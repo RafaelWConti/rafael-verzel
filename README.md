@@ -4,18 +4,16 @@ Testes de cupom e frete grátis da [Verzel Store](https://verzel-store.qa-test-v
 
 ## Resultado
 
-Execução em 07/10/2026. Foram encontrados dois bugs: cobrança de frete com subtotal de exatamente R$ 200,00 e aceitação de seis unidades pela API.
+Foram encontrados dois bugs: cobrança de frete com subtotal de exatamente R$ 200,00 e aceitação de seis unidades pela API.
 
 Playwright: 5 testes passaram e 1 falhou. API: 30 chamadas passaram e 4 falharam. As falhas estão explicadas em [bugs](docs/bugs.md).
-
-Em 08/10/2026, aprofundei a exploração com nove verificações pela tela e 23 chamadas adicionais à API. Não houve outro bug confirmado. O BUG01 também apareceu na confirmação do pedido. Os detalhes estão em [exploração adicional](docs/exploratory-tests.md).
 
 ## Documentos
 
 - [Plano de testes](docs/test-plan.md)
 - [Cenários](docs/test-cases.md)
 - [Resultados por cenário](docs/test-results.md)
-- [Exploração adicional de 08/10](docs/exploratory-tests.md)
+- [Testes exploratórios](docs/exploratory-tests.md)
 - [Bugs e passos para reproduzir](docs/bugs.md)
 - [Evidências](docs/evidence.md)
 
@@ -50,8 +48,8 @@ O comando gera `evidence/api/latest-run.json` e retorna falha enquanto houver as
 
 Todos os pedidos usam dados fictícios no ambiente do desafio.
 
-A coleção adicional de 08/10 está em [api/exploration-collection.json](api/exploration-collection.json). Pode ser importada no Postman ou executada com `npx newman run api/exploration-collection.json`. Ela contém 23 chamadas e mantém a validação do frete correto no pedido.
+A coleção de testes exploratórios está em [api/exploration-collection.json](api/exploration-collection.json). Pode ser importada no Postman ou executada com `npx newman run api/exploration-collection.json`. Ela contém 23 chamadas e mantém a validação do frete correto no pedido.
 
 ## Apoio de IA
 
-O Codex foi usado para ajudar no planejamento, escrever e revisar os arquivos, executar os testes e organizar as evidências. Os resultados registrados vieram das execuções na loja e na API.
+O Codex foi usado para ajudar no planejamento, escrever e revisar os arquivos, executar os testes e organizar as evidências.
