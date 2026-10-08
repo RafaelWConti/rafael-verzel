@@ -1,0 +1,762 @@
+{
+  "executedAt": "2026-10-08T12:29:59.290Z",
+  "results": [
+    {
+      "name": "carrinho/calcular: corpo null",
+      "endpoint": "carrinho/calcular",
+      "body": null,
+      "status": 400,
+      "fields": {
+        "erro.codigo": "JSON_INVALIDO"
+      },
+      "actualStatus": 400,
+      "response": {
+        "erro": {
+          "codigo": "JSON_INVALIDO",
+          "mensagem": "O corpo da requisição deve ser um objeto JSON válido."
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "carrinho/calcular: corpo array",
+      "endpoint": "carrinho/calcular",
+      "body": [],
+      "status": 400,
+      "fields": {
+        "erro.codigo": "JSON_INVALIDO"
+      },
+      "actualStatus": 400,
+      "response": {
+        "erro": {
+          "codigo": "JSON_INVALIDO",
+          "mensagem": "O corpo da requisição deve ser um objeto JSON válido."
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "carrinho/calcular: itens ausentes",
+      "endpoint": "carrinho/calcular",
+      "body": {},
+      "status": 422,
+      "fields": {
+        "erro.codigo": "ITENS_OBRIGATORIOS"
+      },
+      "actualStatus": 422,
+      "response": {
+        "erro": {
+          "codigo": "ITENS_OBRIGATORIOS",
+          "mensagem": "Informe ao menos um item.",
+          "campo": "itens"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "carrinho/calcular: item null",
+      "endpoint": "carrinho/calcular",
+      "body": {
+        "itens": [
+          null
+        ]
+      },
+      "status": 422,
+      "fields": {
+        "erro.codigo": "ITEM_INVALIDO"
+      },
+      "actualStatus": 422,
+      "response": {
+        "erro": {
+          "codigo": "ITEM_INVALIDO",
+          "mensagem": "Cada item deve ser um objeto com produtoId e quantidade.",
+          "campo": "itens[0]"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "carrinho/calcular: quantidade -1",
+      "endpoint": "carrinho/calcular",
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P001",
+            "quantidade": -1
+          }
+        ]
+      },
+      "status": 422,
+      "fields": {
+        "erro.codigo": "QUANTIDADE_INVALIDA"
+      },
+      "actualStatus": 422,
+      "response": {
+        "erro": {
+          "codigo": "QUANTIDADE_INVALIDA",
+          "mensagem": "A quantidade deve ser um número inteiro maior ou igual a 1.",
+          "campo": "itens[0].quantidade"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "carrinho/calcular: quantidade \"2\"",
+      "endpoint": "carrinho/calcular",
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P001",
+            "quantidade": "2"
+          }
+        ]
+      },
+      "status": 422,
+      "fields": {
+        "erro.codigo": "QUANTIDADE_INVALIDA"
+      },
+      "actualStatus": 422,
+      "response": {
+        "erro": {
+          "codigo": "QUANTIDADE_INVALIDA",
+          "mensagem": "A quantidade deve ser um número inteiro maior ou igual a 1.",
+          "campo": "itens[0].quantidade"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "carrinho/calcular: quantidade null",
+      "endpoint": "carrinho/calcular",
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P001",
+            "quantidade": null
+          }
+        ]
+      },
+      "status": 422,
+      "fields": {
+        "erro.codigo": "QUANTIDADE_INVALIDA"
+      },
+      "actualStatus": 422,
+      "response": {
+        "erro": {
+          "codigo": "QUANTIDADE_INVALIDA",
+          "mensagem": "A quantidade deve ser um número inteiro maior ou igual a 1.",
+          "campo": "itens[0].quantidade"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "pedidos: corpo null",
+      "endpoint": "pedidos",
+      "body": null,
+      "status": 400,
+      "fields": {
+        "erro.codigo": "JSON_INVALIDO"
+      },
+      "actualStatus": 400,
+      "response": {
+        "erro": {
+          "codigo": "JSON_INVALIDO",
+          "mensagem": "O corpo da requisição deve ser um objeto JSON válido."
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "pedidos: corpo array",
+      "endpoint": "pedidos",
+      "body": [],
+      "status": 400,
+      "fields": {
+        "erro.codigo": "JSON_INVALIDO"
+      },
+      "actualStatus": 400,
+      "response": {
+        "erro": {
+          "codigo": "JSON_INVALIDO",
+          "mensagem": "O corpo da requisição deve ser um objeto JSON válido."
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "pedidos: itens ausentes",
+      "endpoint": "pedidos",
+      "body": {
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        }
+      },
+      "status": 422,
+      "fields": {
+        "erro.codigo": "ITENS_OBRIGATORIOS"
+      },
+      "actualStatus": 422,
+      "response": {
+        "erro": {
+          "codigo": "ITENS_OBRIGATORIOS",
+          "mensagem": "Informe ao menos um item.",
+          "campo": "itens"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "pedidos: item null",
+      "endpoint": "pedidos",
+      "body": {
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        },
+        "itens": [
+          null
+        ]
+      },
+      "status": 422,
+      "fields": {
+        "erro.codigo": "ITEM_INVALIDO"
+      },
+      "actualStatus": 422,
+      "response": {
+        "erro": {
+          "codigo": "ITEM_INVALIDO",
+          "mensagem": "Cada item deve ser um objeto com produtoId e quantidade.",
+          "campo": "itens[0]"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "pedidos: quantidade -1",
+      "endpoint": "pedidos",
+      "body": {
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        },
+        "itens": [
+          {
+            "produtoId": "P001",
+            "quantidade": -1
+          }
+        ]
+      },
+      "status": 422,
+      "fields": {
+        "erro.codigo": "QUANTIDADE_INVALIDA"
+      },
+      "actualStatus": 422,
+      "response": {
+        "erro": {
+          "codigo": "QUANTIDADE_INVALIDA",
+          "mensagem": "A quantidade deve ser um número inteiro maior ou igual a 1.",
+          "campo": "itens[0].quantidade"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "pedidos: quantidade \"2\"",
+      "endpoint": "pedidos",
+      "body": {
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        },
+        "itens": [
+          {
+            "produtoId": "P001",
+            "quantidade": "2"
+          }
+        ]
+      },
+      "status": 422,
+      "fields": {
+        "erro.codigo": "QUANTIDADE_INVALIDA"
+      },
+      "actualStatus": 422,
+      "response": {
+        "erro": {
+          "codigo": "QUANTIDADE_INVALIDA",
+          "mensagem": "A quantidade deve ser um número inteiro maior ou igual a 1.",
+          "campo": "itens[0].quantidade"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "pedidos: quantidade null",
+      "endpoint": "pedidos",
+      "body": {
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        },
+        "itens": [
+          {
+            "produtoId": "P001",
+            "quantidade": null
+          }
+        ]
+      },
+      "status": 422,
+      "fields": {
+        "erro.codigo": "QUANTIDADE_INVALIDA"
+      },
+      "actualStatus": 422,
+      "response": {
+        "erro": {
+          "codigo": "QUANTIDADE_INVALIDA",
+          "mensagem": "A quantidade deve ser um número inteiro maior ou igual a 1.",
+          "campo": "itens[0].quantidade"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "nome com espaços sem sobrenome",
+      "endpoint": "pedidos",
+      "body": {
+        "cliente": {
+          "nome": "  Cliente  ",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        },
+        "itens": [
+          {
+            "produtoId": "P001",
+            "quantidade": 1
+          }
+        ]
+      },
+      "status": 422,
+      "fields": {
+        "erro.codigo": "DADOS_INVALIDOS"
+      },
+      "actualStatus": 422,
+      "response": {
+        "erro": {
+          "codigo": "DADOS_INVALIDOS",
+          "mensagem": "Existem campos inválidos no pedido.",
+          "campos": [
+            {
+              "campo": "cliente.nome",
+              "mensagem": "Informe nome e sobrenome."
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "nome em branco",
+      "endpoint": "pedidos",
+      "body": {
+        "cliente": {
+          "nome": "   ",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        },
+        "itens": [
+          {
+            "produtoId": "P001",
+            "quantidade": 1
+          }
+        ]
+      },
+      "status": 422,
+      "fields": {
+        "erro.codigo": "DADOS_INVALIDOS"
+      },
+      "actualStatus": 422,
+      "response": {
+        "erro": {
+          "codigo": "DADOS_INVALIDOS",
+          "mensagem": "Existem campos inválidos no pedido.",
+          "campos": [
+            {
+              "campo": "cliente.nome",
+              "mensagem": "Informe o nome completo."
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "email sem domínio",
+      "endpoint": "pedidos",
+      "body": {
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "cliente@",
+          "cep": "01310-100"
+        },
+        "itens": [
+          {
+            "produtoId": "P001",
+            "quantidade": 1
+          }
+        ]
+      },
+      "status": 422,
+      "fields": {
+        "erro.codigo": "DADOS_INVALIDOS"
+      },
+      "actualStatus": 422,
+      "response": {
+        "erro": {
+          "codigo": "DADOS_INVALIDOS",
+          "mensagem": "Existem campos inválidos no pedido.",
+          "campos": [
+            {
+              "campo": "cliente.email",
+              "mensagem": "Informe um e-mail válido."
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "CEP com letras e oito números",
+      "endpoint": "pedidos",
+      "body": {
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "abc01310100"
+        },
+        "itens": [
+          {
+            "produtoId": "P001",
+            "quantidade": 1
+          }
+        ]
+      },
+      "status": 422,
+      "fields": {
+        "erro.codigo": "DADOS_INVALIDOS"
+      },
+      "actualStatus": 422,
+      "response": {
+        "erro": {
+          "codigo": "DADOS_INVALIDOS",
+          "mensagem": "Existem campos inválidos no pedido.",
+          "campos": [
+            {
+              "campo": "cliente.cep",
+              "mensagem": "Informe um CEP com 8 dígitos."
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "CEP com nove números",
+      "endpoint": "pedidos",
+      "body": {
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "013101001"
+        },
+        "itens": [
+          {
+            "produtoId": "P001",
+            "quantidade": 1
+          }
+        ]
+      },
+      "status": 422,
+      "fields": {
+        "erro.codigo": "DADOS_INVALIDOS"
+      },
+      "actualStatus": 422,
+      "response": {
+        "erro": {
+          "codigo": "DADOS_INVALIDOS",
+          "mensagem": "Existem campos inválidos no pedido.",
+          "campos": [
+            {
+              "campo": "cliente.cep",
+              "mensagem": "Informe um CEP com 8 dígitos."
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "Pedido no limite do frete",
+      "endpoint": "pedidos",
+      "body": {
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        },
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 2
+          }
+        ],
+        "cupom": "BEMVINDO10"
+      },
+      "status": 201,
+      "fields": {
+        "subtotal": 200,
+        "desconto": 20,
+        "frete": 0,
+        "total": 180
+      },
+      "actualStatus": 201,
+      "response": {
+        "numero": "VZ-961472",
+        "criadoEm": "2026-10-08T12:29:57.464Z",
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310100"
+        },
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 2,
+            "total": 200
+          }
+        ],
+        "subtotal": 200,
+        "desconto": 20,
+        "frete": 19.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 0,
+        "total": 199.9,
+        "cupom": {
+          "codigo": "BEMVINDO10",
+          "aplicado": true,
+          "mensagem": "Cupom aplicado: 10% de desconto nos produtos."
+        }
+      },
+      "passed": false,
+      "failures": [
+        "expected { numero: 'VZ-961472', …(10) } to have nested property 'frete' of +0, but got 19.9",
+        "expected { numero: 'VZ-961472', …(10) } to have nested property 'total' of 180, but got 199.9"
+      ]
+    },
+    {
+      "name": "Pedido com cupom normalizado",
+      "endpoint": "pedidos",
+      "body": {
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        },
+        "itens": [
+          {
+            "produtoId": "P001",
+            "quantidade": 1
+          }
+        ],
+        "cupom": "  bEmViNdO10  "
+      },
+      "status": 201,
+      "fields": {
+        "desconto": 5.99,
+        "total": 73.81
+      },
+      "actualStatus": 201,
+      "response": {
+        "numero": "VZ-929512",
+        "criadoEm": "2026-10-08T12:29:58.069Z",
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310100"
+        },
+        "itens": [
+          {
+            "produtoId": "P001",
+            "nome": "Camiseta Essencial",
+            "precoUnitario": 59.9,
+            "quantidade": 1,
+            "total": 59.9
+          }
+        ],
+        "subtotal": 59.9,
+        "desconto": 5.99,
+        "frete": 19.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 140.1,
+        "total": 73.81,
+        "cupom": {
+          "codigo": "BEMVINDO10",
+          "aplicado": true,
+          "mensagem": "Cupom aplicado: 10% de desconto nos produtos."
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "Dois produtos com cinco unidades cada",
+      "endpoint": "carrinho/calcular",
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P001",
+            "quantidade": 5
+          },
+          {
+            "produtoId": "P006",
+            "quantidade": 5
+          }
+        ],
+        "cupom": "BEMVINDO10"
+      },
+      "status": 200,
+      "fields": {
+        "subtotal": 449,
+        "desconto": 44.9,
+        "frete": 0,
+        "total": 404.1
+      },
+      "actualStatus": 200,
+      "response": {
+        "itens": [
+          {
+            "produtoId": "P001",
+            "nome": "Camiseta Essencial",
+            "precoUnitario": 59.9,
+            "quantidade": 5,
+            "total": 299.5
+          },
+          {
+            "produtoId": "P006",
+            "nome": "Kit 3 Pares de Meias",
+            "precoUnitario": 29.9,
+            "quantidade": 5,
+            "total": 149.5
+          }
+        ],
+        "subtotal": 449,
+        "desconto": 44.9,
+        "frete": 0,
+        "freteGratis": true,
+        "valorFaltanteFreteGratis": 0,
+        "total": 404.1,
+        "cupom": {
+          "codigo": "BEMVINDO10",
+          "aplicado": true,
+          "mensagem": "Cupom aplicado: 10% de desconto nos produtos."
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "name": "Pedido com valores de centavos",
+      "endpoint": "pedidos",
+      "body": {
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        },
+        "itens": [
+          {
+            "produtoId": "P008",
+            "quantidade": 3
+          },
+          {
+            "produtoId": "P004",
+            "quantidade": 1
+          }
+        ],
+        "cupom": "BEMVINDO10"
+      },
+      "status": 201,
+      "fields": {
+        "subtotal": 199.9,
+        "desconto": 19.99,
+        "frete": 19.9,
+        "total": 199.81
+      },
+      "actualStatus": 201,
+      "response": {
+        "numero": "VZ-510018",
+        "criadoEm": "2026-10-08T12:29:59.304Z",
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310100"
+        },
+        "itens": [
+          {
+            "produtoId": "P008",
+            "nome": "Garrafa Térmica 750ml",
+            "precoUnitario": 50,
+            "quantidade": 3,
+            "total": 150
+          },
+          {
+            "produtoId": "P004",
+            "nome": "Boné Aba Curva",
+            "precoUnitario": 49.9,
+            "quantidade": 1,
+            "total": 49.9
+          }
+        ],
+        "subtotal": 199.9,
+        "desconto": 19.99,
+        "frete": 19.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 0.1,
+        "total": 199.81,
+        "cupom": {
+          "codigo": "BEMVINDO10",
+          "aplicado": true,
+          "mensagem": "Cupom aplicado: 10% de desconto nos produtos."
+        }
+      },
+      "passed": true,
+      "failures": []
+    }
+  ]
+}

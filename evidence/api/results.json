@@ -1,0 +1,1423 @@
+{
+  "executedAt": "2026-10-07T13:38:55.561Z",
+  "results": [
+    {
+      "id": "CT01",
+      "name": "Mochila sem cupom",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          }
+        ]
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 200,
+        "subtotal": 100,
+        "desconto": 0,
+        "frete": 19.9,
+        "total": 119.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 100
+      },
+      "status": 200,
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 1,
+            "total": 100
+          }
+        ],
+        "subtotal": 100,
+        "desconto": 0,
+        "frete": 19.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 100,
+        "total": 119.9,
+        "cupom": null
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT16",
+      "name": "Camiseta com cupom",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P001",
+            "quantidade": 1
+          }
+        ],
+        "cupom": "BEMVINDO10"
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 200,
+        "subtotal": 59.9,
+        "desconto": 5.99,
+        "frete": 19.9,
+        "total": 73.81,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 140.1
+      },
+      "status": 200,
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P001",
+            "nome": "Camiseta Essencial",
+            "precoUnitario": 59.9,
+            "quantidade": 1,
+            "total": 59.9
+          }
+        ],
+        "subtotal": 59.9,
+        "desconto": 5.99,
+        "frete": 19.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 140.1,
+        "total": 73.81,
+        "cupom": {
+          "codigo": "BEMVINDO10",
+          "aplicado": true,
+          "mensagem": "Cupom aplicado: 10% de desconto nos produtos."
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT16",
+      "name": "Subtotal 199.90",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P008",
+            "quantidade": 3
+          },
+          {
+            "produtoId": "P004",
+            "quantidade": 1
+          }
+        ],
+        "cupom": "BEMVINDO10"
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 200,
+        "subtotal": 199.9,
+        "desconto": 19.99,
+        "frete": 19.9,
+        "total": 199.81,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 0.1
+      },
+      "status": 200,
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P008",
+            "nome": "Garrafa Térmica 750ml",
+            "precoUnitario": 50,
+            "quantidade": 3,
+            "total": 150
+          },
+          {
+            "produtoId": "P004",
+            "nome": "Boné Aba Curva",
+            "precoUnitario": 49.9,
+            "quantidade": 1,
+            "total": 49.9
+          }
+        ],
+        "subtotal": 199.9,
+        "desconto": 19.99,
+        "frete": 19.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 0.1,
+        "total": 199.81,
+        "cupom": {
+          "codigo": "BEMVINDO10",
+          "aplicado": true,
+          "mensagem": "Cupom aplicado: 10% de desconto nos produtos."
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT16",
+      "name": "Subtotal 200 com cupom",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 2
+          }
+        ],
+        "cupom": "BEMVINDO10"
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 200,
+        "subtotal": 200,
+        "desconto": 20,
+        "frete": 0,
+        "total": 180,
+        "freteGratis": true,
+        "valorFaltanteFreteGratis": 0
+      },
+      "status": 200,
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 2,
+            "total": 200
+          }
+        ],
+        "subtotal": 200,
+        "desconto": 20,
+        "frete": 19.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 0,
+        "total": 199.9,
+        "cupom": {
+          "codigo": "BEMVINDO10",
+          "aplicado": true,
+          "mensagem": "Cupom aplicado: 10% de desconto nos produtos."
+        }
+      },
+      "passed": false,
+      "failures": [
+        {
+          "name": "frete correto",
+          "error": "expected { itens: [ { …(5) } ], …(7) } to have nested property 'frete' of +0, but got 19.9"
+        },
+        {
+          "name": "total correto",
+          "error": "expected { itens: [ { …(5) } ], …(7) } to have nested property 'total' of 180, but got 199.9"
+        },
+        {
+          "name": "freteGratis correto",
+          "error": "expected { itens: [ { …(5) } ], …(7) } to have nested property 'freteGratis' of true, but got false"
+        }
+      ]
+    },
+    {
+      "id": "CT16",
+      "name": "Subtotal 200 sem cupom",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 2
+          }
+        ]
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 200,
+        "subtotal": 200,
+        "desconto": 0,
+        "frete": 0,
+        "total": 200,
+        "freteGratis": true,
+        "valorFaltanteFreteGratis": 0
+      },
+      "status": 200,
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 2,
+            "total": 200
+          }
+        ],
+        "subtotal": 200,
+        "desconto": 0,
+        "frete": 19.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 0,
+        "total": 219.9,
+        "cupom": null
+      },
+      "passed": false,
+      "failures": [
+        {
+          "name": "frete correto",
+          "error": "expected { itens: [ { …(5) } ], …(7) } to have nested property 'frete' of +0, but got 19.9"
+        },
+        {
+          "name": "total correto",
+          "error": "expected { itens: [ { …(5) } ], …(7) } to have nested property 'total' of 200, but got 219.9"
+        },
+        {
+          "name": "freteGratis correto",
+          "error": "expected { itens: [ { …(5) } ], …(7) } to have nested property 'freteGratis' of true, but got false"
+        }
+      ]
+    },
+    {
+      "id": "CT16",
+      "name": "Subtotal 250 com cupom",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 2
+          },
+          {
+            "produtoId": "P008",
+            "quantidade": 1
+          }
+        ],
+        "cupom": "BEMVINDO10"
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 200,
+        "subtotal": 250,
+        "desconto": 25,
+        "frete": 0,
+        "total": 225,
+        "freteGratis": true,
+        "valorFaltanteFreteGratis": 0
+      },
+      "status": 200,
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 2,
+            "total": 200
+          },
+          {
+            "produtoId": "P008",
+            "nome": "Garrafa Térmica 750ml",
+            "precoUnitario": 50,
+            "quantidade": 1,
+            "total": 50
+          }
+        ],
+        "subtotal": 250,
+        "desconto": 25,
+        "frete": 0,
+        "freteGratis": true,
+        "valorFaltanteFreteGratis": 0,
+        "total": 225,
+        "cupom": {
+          "codigo": "BEMVINDO10",
+          "aplicado": true,
+          "mensagem": "Cupom aplicado: 10% de desconto nos produtos."
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT22",
+      "name": "Frete considera subtotal antes do desconto",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P008",
+            "quantidade": 3
+          },
+          {
+            "produtoId": "P001",
+            "quantidade": 1
+          }
+        ],
+        "cupom": "BEMVINDO10"
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 200,
+        "subtotal": 209.9,
+        "desconto": 20.99,
+        "frete": 0,
+        "total": 188.91,
+        "freteGratis": true,
+        "valorFaltanteFreteGratis": 0
+      },
+      "status": 200,
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P008",
+            "nome": "Garrafa Térmica 750ml",
+            "precoUnitario": 50,
+            "quantidade": 3,
+            "total": 150
+          },
+          {
+            "produtoId": "P001",
+            "nome": "Camiseta Essencial",
+            "precoUnitario": 59.9,
+            "quantidade": 1,
+            "total": 59.9
+          }
+        ],
+        "subtotal": 209.9,
+        "desconto": 20.99,
+        "frete": 0,
+        "freteGratis": true,
+        "valorFaltanteFreteGratis": 0,
+        "total": 188.91,
+        "cupom": {
+          "codigo": "BEMVINDO10",
+          "aplicado": true,
+          "mensagem": "Cupom aplicado: 10% de desconto nos produtos."
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT03",
+      "name": "Normalizar \"bemvindo10\"",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          }
+        ],
+        "cupom": "bemvindo10"
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 200,
+        "desconto": 10,
+        "total": 109.9,
+        "cupom.aplicado": true
+      },
+      "status": 200,
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 1,
+            "total": 100
+          }
+        ],
+        "subtotal": 100,
+        "desconto": 10,
+        "frete": 19.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 100,
+        "total": 109.9,
+        "cupom": {
+          "codigo": "BEMVINDO10",
+          "aplicado": true,
+          "mensagem": "Cupom aplicado: 10% de desconto nos produtos."
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT03",
+      "name": "Normalizar \"BeMvInDo10\"",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          }
+        ],
+        "cupom": "BeMvInDo10"
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 200,
+        "desconto": 10,
+        "total": 109.9,
+        "cupom.aplicado": true
+      },
+      "status": 200,
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 1,
+            "total": 100
+          }
+        ],
+        "subtotal": 100,
+        "desconto": 10,
+        "frete": 19.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 100,
+        "total": 109.9,
+        "cupom": {
+          "codigo": "BEMVINDO10",
+          "aplicado": true,
+          "mensagem": "Cupom aplicado: 10% de desconto nos produtos."
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT03",
+      "name": "Normalizar \"  BEMVINDO10  \"",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          }
+        ],
+        "cupom": "  BEMVINDO10  "
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 200,
+        "desconto": 10,
+        "total": 109.9,
+        "cupom.aplicado": true
+      },
+      "status": 200,
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 1,
+            "total": 100
+          }
+        ],
+        "subtotal": 100,
+        "desconto": 10,
+        "frete": 19.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 100,
+        "total": 109.9,
+        "cupom": {
+          "codigo": "BEMVINDO10",
+          "aplicado": true,
+          "mensagem": "Cupom aplicado: 10% de desconto nos produtos."
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT17",
+      "name": "NAOEXISTE123",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          }
+        ],
+        "cupom": "NAOEXISTE123"
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 200,
+        "desconto": 0,
+        "total": 119.9,
+        "cupom.aplicado": false,
+        "cupom.mensagem": "Cupom inválido."
+      },
+      "status": 200,
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 1,
+            "total": 100
+          }
+        ],
+        "subtotal": 100,
+        "desconto": 0,
+        "frete": 19.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 100,
+        "total": 119.9,
+        "cupom": {
+          "codigo": "NAOEXISTE123",
+          "aplicado": false,
+          "mensagem": "Cupom inválido."
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT17",
+      "name": "VERAO2026",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          }
+        ],
+        "cupom": "VERAO2026"
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 200,
+        "desconto": 0,
+        "total": 119.9,
+        "cupom.aplicado": false,
+        "cupom.mensagem": "Cupom expirado."
+      },
+      "status": 200,
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 1,
+            "total": 100
+          }
+        ],
+        "subtotal": 100,
+        "desconto": 0,
+        "frete": 19.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 100,
+        "total": 119.9,
+        "cupom": {
+          "codigo": "VERAO2026",
+          "aplicado": false,
+          "mensagem": "Cupom expirado."
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT18",
+      "name": "Quantidade válida 1",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          }
+        ]
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 200,
+        "subtotal": 100
+      },
+      "status": 200,
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 1,
+            "total": 100
+          }
+        ],
+        "subtotal": 100,
+        "desconto": 0,
+        "frete": 19.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 100,
+        "total": 119.9,
+        "cupom": null
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT18",
+      "name": "Quantidade válida 5",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 5
+          }
+        ]
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 200,
+        "subtotal": 500
+      },
+      "status": 200,
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 5,
+            "total": 500
+          }
+        ],
+        "subtotal": 500,
+        "desconto": 0,
+        "frete": 0,
+        "freteGratis": true,
+        "valorFaltanteFreteGratis": 0,
+        "total": 500,
+        "cupom": null
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT18",
+      "name": "carrinho/calcular: quantidade 6",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 6
+          }
+        ]
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "QUANTIDADE_MAXIMA_EXCEDIDA"
+      },
+      "status": 200,
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 6,
+            "total": 600
+          }
+        ],
+        "subtotal": 600,
+        "desconto": 0,
+        "frete": 0,
+        "freteGratis": true,
+        "valorFaltanteFreteGratis": 0,
+        "total": 600,
+        "cupom": null
+      },
+      "passed": false,
+      "failures": [
+        {
+          "name": "Status 422",
+          "error": "expected response to have status code 422 but got 200"
+        },
+        {
+          "name": "erro.codigo correto",
+          "error": "expected { itens: [ { …(5) } ], …(7) } to have nested property 'erro.codigo'"
+        }
+      ]
+    },
+    {
+      "id": "CT18",
+      "name": "carrinho/calcular: quantidade 0",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 0
+          }
+        ]
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "QUANTIDADE_INVALIDA"
+      },
+      "status": 422,
+      "body": {
+        "erro": {
+          "codigo": "QUANTIDADE_INVALIDA",
+          "mensagem": "A quantidade deve ser um número inteiro maior ou igual a 1.",
+          "campo": "itens[0].quantidade"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT18",
+      "name": "carrinho/calcular: quantidade 1.5",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1.5
+          }
+        ]
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "QUANTIDADE_INVALIDA"
+      },
+      "status": 422,
+      "body": {
+        "erro": {
+          "codigo": "QUANTIDADE_INVALIDA",
+          "mensagem": "A quantidade deve ser um número inteiro maior ou igual a 1.",
+          "campo": "itens[0].quantidade"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT21",
+      "name": "carrinho/calcular: vazio",
+      "request": {
+        "itens": []
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "ITENS_OBRIGATORIOS"
+      },
+      "status": 422,
+      "body": {
+        "erro": {
+          "codigo": "ITENS_OBRIGATORIOS",
+          "mensagem": "Informe ao menos um item.",
+          "campo": "itens"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT21",
+      "name": "carrinho/calcular: inexistente",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P999",
+            "quantidade": 1
+          }
+        ]
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "PRODUTO_NAO_ENCONTRADO"
+      },
+      "status": 422,
+      "body": {
+        "erro": {
+          "codigo": "PRODUTO_NAO_ENCONTRADO",
+          "mensagem": "Produto P999 não encontrado.",
+          "campo": "itens[0].produtoId"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT21",
+      "name": "carrinho/calcular: duplicado",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          },
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          }
+        ]
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "ITEM_DUPLICADO"
+      },
+      "status": 422,
+      "body": {
+        "erro": {
+          "codigo": "ITEM_DUPLICADO",
+          "mensagem": "O produto P005 aparece mais de uma vez.",
+          "campo": "itens[1].produtoId"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT18",
+      "name": "pedidos: quantidade 6",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 6
+          }
+        ],
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        }
+      },
+      "endpoint": "pedidos",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "QUANTIDADE_MAXIMA_EXCEDIDA"
+      },
+      "status": 201,
+      "body": {
+        "numero": "VZ-113922",
+        "criadoEm": "2026-10-07T13:38:53.151Z",
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310100"
+        },
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 6,
+            "total": 600
+          }
+        ],
+        "subtotal": 600,
+        "desconto": 0,
+        "frete": 0,
+        "freteGratis": true,
+        "valorFaltanteFreteGratis": 0,
+        "total": 600,
+        "cupom": null
+      },
+      "passed": false,
+      "failures": [
+        {
+          "name": "Status 422",
+          "error": "expected response to have status code 422 but got 201"
+        },
+        {
+          "name": "erro.codigo correto",
+          "error": "expected { numero: 'VZ-113922', …(10) } to have nested property 'erro.codigo'"
+        }
+      ]
+    },
+    {
+      "id": "CT18",
+      "name": "pedidos: quantidade 0",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 0
+          }
+        ],
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        }
+      },
+      "endpoint": "pedidos",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "QUANTIDADE_INVALIDA"
+      },
+      "status": 422,
+      "body": {
+        "erro": {
+          "codigo": "QUANTIDADE_INVALIDA",
+          "mensagem": "A quantidade deve ser um número inteiro maior ou igual a 1.",
+          "campo": "itens[0].quantidade"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT18",
+      "name": "pedidos: quantidade 1.5",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1.5
+          }
+        ],
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        }
+      },
+      "endpoint": "pedidos",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "QUANTIDADE_INVALIDA"
+      },
+      "status": 422,
+      "body": {
+        "erro": {
+          "codigo": "QUANTIDADE_INVALIDA",
+          "mensagem": "A quantidade deve ser um número inteiro maior ou igual a 1.",
+          "campo": "itens[0].quantidade"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT21",
+      "name": "pedidos: vazio",
+      "request": {
+        "itens": [],
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        }
+      },
+      "endpoint": "pedidos",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "ITENS_OBRIGATORIOS"
+      },
+      "status": 422,
+      "body": {
+        "erro": {
+          "codigo": "ITENS_OBRIGATORIOS",
+          "mensagem": "Informe ao menos um item.",
+          "campo": "itens"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT21",
+      "name": "pedidos: inexistente",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P999",
+            "quantidade": 1
+          }
+        ],
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        }
+      },
+      "endpoint": "pedidos",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "PRODUTO_NAO_ENCONTRADO"
+      },
+      "status": 422,
+      "body": {
+        "erro": {
+          "codigo": "PRODUTO_NAO_ENCONTRADO",
+          "mensagem": "Produto P999 não encontrado.",
+          "campo": "itens[0].produtoId"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT21",
+      "name": "pedidos: duplicado",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          },
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          }
+        ],
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        }
+      },
+      "endpoint": "pedidos",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "ITEM_DUPLICADO"
+      },
+      "status": 422,
+      "body": {
+        "erro": {
+          "codigo": "ITEM_DUPLICADO",
+          "mensagem": "O produto P005 aparece mais de uma vez.",
+          "campo": "itens[1].produtoId"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT19",
+      "name": "Pedido válido",
+      "request": {
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        },
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          }
+        ],
+        "cupom": "BEMVINDO10"
+      },
+      "endpoint": "pedidos",
+      "expected": {
+        "status": 201,
+        "subtotal": 100,
+        "desconto": 10,
+        "frete": 19.9,
+        "total": 109.9,
+        "cliente.cep": "01310100"
+      },
+      "status": 201,
+      "body": {
+        "numero": "VZ-488576",
+        "criadoEm": "2026-10-07T13:38:54.276Z",
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310100"
+        },
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 1,
+            "total": 100
+          }
+        ],
+        "subtotal": 100,
+        "desconto": 10,
+        "frete": 19.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 100,
+        "total": 109.9,
+        "cupom": {
+          "codigo": "BEMVINDO10",
+          "aplicado": true,
+          "mensagem": "Cupom aplicado: 10% de desconto nos produtos."
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT20",
+      "name": "NAOEXISTE123",
+      "request": {
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        },
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          }
+        ],
+        "cupom": "NAOEXISTE123"
+      },
+      "endpoint": "pedidos",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "CUPOM_INVALIDO"
+      },
+      "status": 422,
+      "body": {
+        "erro": {
+          "codigo": "CUPOM_INVALIDO",
+          "mensagem": "Cupom inválido.",
+          "campo": "cupom"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT20",
+      "name": "VERAO2026",
+      "request": {
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        },
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          }
+        ],
+        "cupom": "VERAO2026"
+      },
+      "endpoint": "pedidos",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "CUPOM_EXPIRADO"
+      },
+      "status": 422,
+      "body": {
+        "erro": {
+          "codigo": "CUPOM_EXPIRADO",
+          "mensagem": "Cupom expirado.",
+          "campo": "cupom"
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT15",
+      "name": "nome sem sobrenome",
+      "request": {
+        "cliente": {
+          "nome": "Cliente",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        },
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          }
+        ]
+      },
+      "endpoint": "pedidos",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "DADOS_INVALIDOS"
+      },
+      "status": 422,
+      "body": {
+        "erro": {
+          "codigo": "DADOS_INVALIDOS",
+          "mensagem": "Existem campos inválidos no pedido.",
+          "campos": [
+            {
+              "campo": "cliente.nome",
+              "mensagem": "Informe nome e sobrenome."
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT15",
+      "name": "email inválido",
+      "request": {
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "cliente@",
+          "cep": "01310-100"
+        },
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          }
+        ]
+      },
+      "endpoint": "pedidos",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "DADOS_INVALIDOS"
+      },
+      "status": 422,
+      "body": {
+        "erro": {
+          "codigo": "DADOS_INVALIDOS",
+          "mensagem": "Existem campos inválidos no pedido.",
+          "campos": [
+            {
+              "campo": "cliente.email",
+              "mensagem": "Informe um e-mail válido."
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT15",
+      "name": "CEP curto",
+      "request": {
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "0131010"
+        },
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          }
+        ]
+      },
+      "endpoint": "pedidos",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "DADOS_INVALIDOS"
+      },
+      "status": 422,
+      "body": {
+        "erro": {
+          "codigo": "DADOS_INVALIDOS",
+          "mensagem": "Existem campos inválidos no pedido.",
+          "campos": [
+            {
+              "campo": "cliente.cep",
+              "mensagem": "Informe um CEP com 8 dígitos."
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT15",
+      "name": "campos vazios",
+      "request": {
+        "cliente": {
+          "nome": "",
+          "email": "",
+          "cep": ""
+        },
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          }
+        ]
+      },
+      "endpoint": "pedidos",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "DADOS_INVALIDOS"
+      },
+      "status": 422,
+      "body": {
+        "erro": {
+          "codigo": "DADOS_INVALIDOS",
+          "mensagem": "Existem campos inválidos no pedido.",
+          "campos": [
+            {
+              "campo": "cliente.nome",
+              "mensagem": "Informe o nome completo."
+            },
+            {
+              "campo": "cliente.email",
+              "mensagem": "Informe o e-mail."
+            },
+            {
+              "campo": "cliente.cep",
+              "mensagem": "Informe o CEP."
+            }
+          ]
+        }
+      },
+      "passed": true,
+      "failures": []
+    },
+    {
+      "id": "CT15",
+      "name": "CEP sem hífen",
+      "request": {
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310100"
+        },
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 1
+          }
+        ]
+      },
+      "endpoint": "pedidos",
+      "expected": {
+        "status": 201,
+        "cliente.cep": "01310100"
+      },
+      "status": 201,
+      "body": {
+        "numero": "VZ-522206",
+        "criadoEm": "2026-10-07T13:38:55.621Z",
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310100"
+        },
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 1,
+            "total": 100
+          }
+        ],
+        "subtotal": 100,
+        "desconto": 0,
+        "frete": 19.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 100,
+        "total": 119.9,
+        "cupom": null
+      },
+      "passed": true,
+      "failures": []
+    }
+  ]
+}

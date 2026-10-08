@@ -1,0 +1,111 @@
+{
+  "executedAt": "2026-10-07T13:38:55.561Z",
+  "results": [
+    {
+      "id": "CT18",
+      "name": "carrinho/calcular: quantidade 6",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 6
+          }
+        ]
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "QUANTIDADE_MAXIMA_EXCEDIDA"
+      },
+      "status": 200,
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 6,
+            "total": 600
+          }
+        ],
+        "subtotal": 600,
+        "desconto": 0,
+        "frete": 0,
+        "freteGratis": true,
+        "valorFaltanteFreteGratis": 0,
+        "total": 600,
+        "cupom": null
+      },
+      "passed": false,
+      "failures": [
+        {
+          "name": "Status 422",
+          "error": "expected response to have status code 422 but got 200"
+        },
+        {
+          "name": "erro.codigo correto",
+          "error": "expected { itens: [ { …(5) } ], …(7) } to have nested property 'erro.codigo'"
+        }
+      ]
+    },
+    {
+      "id": "CT18",
+      "name": "pedidos: quantidade 6",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 6
+          }
+        ],
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310-100"
+        }
+      },
+      "endpoint": "pedidos",
+      "expected": {
+        "status": 422,
+        "erro.codigo": "QUANTIDADE_MAXIMA_EXCEDIDA"
+      },
+      "status": 201,
+      "body": {
+        "numero": "VZ-113922",
+        "criadoEm": "2026-10-07T13:38:53.151Z",
+        "cliente": {
+          "nome": "Cliente Teste",
+          "email": "rafael.teste@example.com",
+          "cep": "01310100"
+        },
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 6,
+            "total": 600
+          }
+        ],
+        "subtotal": 600,
+        "desconto": 0,
+        "frete": 0,
+        "freteGratis": true,
+        "valorFaltanteFreteGratis": 0,
+        "total": 600,
+        "cupom": null
+      },
+      "passed": false,
+      "failures": [
+        {
+          "name": "Status 422",
+          "error": "expected response to have status code 422 but got 201"
+        },
+        {
+          "name": "erro.codigo correto",
+          "error": "expected { numero: 'VZ-113922', …(10) } to have nested property 'erro.codigo'"
+        }
+      ]
+    }
+  ]
+}

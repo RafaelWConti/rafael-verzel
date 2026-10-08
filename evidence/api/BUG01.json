@@ -1,0 +1,122 @@
+{
+  "executedAt": "2026-10-07T13:38:55.561Z",
+  "results": [
+    {
+      "id": "CT16",
+      "name": "Subtotal 200 com cupom",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 2
+          }
+        ],
+        "cupom": "BEMVINDO10"
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 200,
+        "subtotal": 200,
+        "desconto": 20,
+        "frete": 0,
+        "total": 180,
+        "freteGratis": true,
+        "valorFaltanteFreteGratis": 0
+      },
+      "status": 200,
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 2,
+            "total": 200
+          }
+        ],
+        "subtotal": 200,
+        "desconto": 20,
+        "frete": 19.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 0,
+        "total": 199.9,
+        "cupom": {
+          "codigo": "BEMVINDO10",
+          "aplicado": true,
+          "mensagem": "Cupom aplicado: 10% de desconto nos produtos."
+        }
+      },
+      "passed": false,
+      "failures": [
+        {
+          "name": "frete correto",
+          "error": "expected { itens: [ { …(5) } ], …(7) } to have nested property 'frete' of +0, but got 19.9"
+        },
+        {
+          "name": "total correto",
+          "error": "expected { itens: [ { …(5) } ], …(7) } to have nested property 'total' of 180, but got 199.9"
+        },
+        {
+          "name": "freteGratis correto",
+          "error": "expected { itens: [ { …(5) } ], …(7) } to have nested property 'freteGratis' of true, but got false"
+        }
+      ]
+    },
+    {
+      "id": "CT16",
+      "name": "Subtotal 200 sem cupom",
+      "request": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "quantidade": 2
+          }
+        ]
+      },
+      "endpoint": "carrinho/calcular",
+      "expected": {
+        "status": 200,
+        "subtotal": 200,
+        "desconto": 0,
+        "frete": 0,
+        "total": 200,
+        "freteGratis": true,
+        "valorFaltanteFreteGratis": 0
+      },
+      "status": 200,
+      "body": {
+        "itens": [
+          {
+            "produtoId": "P005",
+            "nome": "Mochila Urbana 20L",
+            "precoUnitario": 100,
+            "quantidade": 2,
+            "total": 200
+          }
+        ],
+        "subtotal": 200,
+        "desconto": 0,
+        "frete": 19.9,
+        "freteGratis": false,
+        "valorFaltanteFreteGratis": 0,
+        "total": 219.9,
+        "cupom": null
+      },
+      "passed": false,
+      "failures": [
+        {
+          "name": "frete correto",
+          "error": "expected { itens: [ { …(5) } ], …(7) } to have nested property 'frete' of +0, but got 19.9"
+        },
+        {
+          "name": "total correto",
+          "error": "expected { itens: [ { …(5) } ], …(7) } to have nested property 'total' of 200, but got 219.9"
+        },
+        {
+          "name": "freteGratis correto",
+          "error": "expected { itens: [ { …(5) } ], …(7) } to have nested property 'freteGratis' of true, but got false"
+        }
+      ]
+    }
+  ]
+}
